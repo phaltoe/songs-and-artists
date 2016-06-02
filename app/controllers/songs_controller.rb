@@ -28,4 +28,19 @@ class SongsController < ApplicationController
     erb :"songs/show.html"
   end
 
+  get '/songs/:id/edit' do #EDIT action
+    @song = Song.find(params[:id])
+    erb :"songs/edit.html"
+  end
+
+  post '/songs/:id' do #UPDATE action
+    @song = Song.find(params[:id])
+    # raise params.inspect
+    # @song.update(params[:song])
+    @song.name = params[:name]
+    @song.artist_name = params[:artist_name]
+    @song.save
+
+    redirect to "songs/#{@song.id}"
+  end
 end
