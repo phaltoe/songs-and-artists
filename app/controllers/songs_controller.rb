@@ -2,6 +2,8 @@ class SongsController < ApplicationController
 
   get '/songs' do #INDEX Action
     "Here are all the songs"
+    # @songs = Song.all
+    # erb :'/songs/index.html'
   end
 
   get '/songs/new' do #NEW Action
@@ -11,7 +13,7 @@ class SongsController < ApplicationController
 
   post '/songs' do #CREATE Action
     # @song = Song.new
-    @song = Song.new(params)
+    @song = Song.new(params[:song])
     # @song = Song.create(:name => params[:song_name] )
     # @song.artist_name = params[:artist_name]
     # @song.name = params[:song_name]
@@ -33,13 +35,13 @@ class SongsController < ApplicationController
     erb :"songs/edit.html"
   end
 
-  post '/songs/:id' do #UPDATE action
+  patch '/songs/:id' do #UPDATE action
     @song = Song.find(params[:id])
     # raise params.inspect
-    # @song.update(params[:song])
-    @song.name = params[:name]
-    @song.artist_name = params[:artist_name]
-    @song.save
+    @song.update(params[:song])
+    # @song.name = params[:name]
+    # @song.artist_name = params[:artist_name]
+    # @song.save
 
     redirect to "songs/#{@song.id}"
   end
