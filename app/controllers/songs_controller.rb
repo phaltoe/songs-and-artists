@@ -30,9 +30,13 @@ class SongsController < ApplicationController
   end
 
   patch '/songs/:id' do #UPDATE action
-    raise params.inspect
     @song = Song.find(params[:id])
+
+    # in genres_id I have an array of genres_id
+    # for each of those ids I want to add genre with that id to @song
+    @song.add_genres_by_ids(params[:genre_ids])
     @song.update(params[:song])
+
 
     redirect to "songs/#{@song.id}"
   end

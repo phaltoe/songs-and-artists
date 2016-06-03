@@ -25,16 +25,18 @@ describe "Song Forms", :feature => true do
 	describe "Editing a Song" do
 		before do
 			@song = Song.create(:name => song_name, :artist_name => artist_name)
-			visit "/songs/#{@song.id}/edit"
-
 			@pop = Genre.create(:name => "Pop")
 			@rock = Genre.create(:name => "Rock")
+
+			visit "/songs/#{@song.id}/edit"
+
 		end
 
 		context 'with genres' do
 			it 'loads an edit form with genres to select' do
-				check "genre_#{@rock_id}"
-				click_button 'Submit'
+				# save_and_open_page
+				check "genre_#{@rock.id}"
+				click_button "Submit"
 
 				expect(page).to have_content("Rock")
 				expect(page).to_not have_content("Pop")

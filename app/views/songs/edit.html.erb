@@ -7,13 +7,13 @@
 
   <label>Update Artist Name</label>
   <input type="text" name="song[artist_name]" value="<%= @song.artist.name %>"/>
-  <input type="Submit" value="Submit" />
 
   	<% @genres.each do |genre| %>
   <p>
-  		<label for="<%= genre.id %>"><%= genre.name %></label>
-  		<input type="checkbox" id="<%= genre.id %>" value="<%= genre.id %>" name="genre_ids[]">
+  		<label for="genre_<%= genre.id %>"><%= genre.name %></label>
+  		<input type="checkbox" id="genre_<%= genre.id %>" value="<%= genre.id %>" name="genre_ids[]">
   </p>
   	<% end %>	
 
+  <input type="submit" value="Submit" />
 </form>
