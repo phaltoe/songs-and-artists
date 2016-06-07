@@ -20,6 +20,7 @@ class SongsController < ApplicationController
 
   get '/songs/:id' do #SHOW Action
     @song = Song.find(params[:id])
+
     erb :"songs/show.html"
   end
 
@@ -45,6 +46,7 @@ class SongsController < ApplicationController
   delete '/songs/:id/delete' do 
     @song = Song.find_by_id(params[:id])
     @song.delete
+    
     redirect to '/songs'
   end
 end
