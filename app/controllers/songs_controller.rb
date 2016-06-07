@@ -26,6 +26,7 @@ class SongsController < ApplicationController
   get '/songs/:id/edit' do #EDIT action
     @genres = Genre.all
     @song = Song.find(params[:id])
+
     erb :"songs/edit.html"
   end
 
@@ -39,5 +40,11 @@ class SongsController < ApplicationController
 
 
     redirect to "songs/#{@song.id}"
+  end
+
+  delete '/songs/:id/delete' do 
+    @song = Song.find_by_id(params[:id])
+    @song.delete
+    redirect to '/songs'
   end
 end
